@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Geo" default="packer" basedir=".">
+
+  <property name="mainclass" value="Navigator" />
+
+  <property name="jarfile" value="neogeo.jar" />
+
+  <property name="build" value="${basedir}/build" />
+
+  <patternset id="source"
+    includes="${mainclass}.java Coordinate.java Ordinate.java Latitude.java Longitude.java PolarCoordinate.java" />
+
+  <target name="compile">
+
+      <mkdir dir="${build}" />
+
+      <javac srcdir="${basedir}" destdir="${build}"
+             compiler="modern" target="1.5"
+             deprecation="yes" debug="yes" optimize="no"
+             verbose="no" listfiles="true"
+             fork="yes">
+
+        <compilerarg value="-Xlint" />
+
+        <patternset refid="source" />
+
+      </javac>
+
+  </target>
+
+  <target name="packer" depends="compile">
+
+      <jar jarfile="${jarfile}" update="no">
+
+          <manifest>
+              <attribute name="Main-Class" value="neo.geo.${mainclass}" />
+          </manifest>
+
+          <fileset dir="${build}" includes="**/*" />
+
+      </jar>
+
+      <delete dir="${build}" />
+
+  </target>
+
+  <target name="runner" depends="packer">
+
+      <java jar="${jarfile}" fork="true" />
+
+  </target>
+
+</project>
