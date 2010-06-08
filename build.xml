@@ -15,11 +15,11 @@
 
       <mkdir dir="${build}" />
 
-      <javac srcdir="${basedir}" destdir="${build}"
+      <javac srcdir="${basedir}/source" destdir="${build}"
              compiler="modern" target="1.5"
              deprecation="yes" debug="yes" optimize="no"
              verbose="no" listfiles="true"
-             fork="yes">
+             fork="yes" includeAntRuntime="yes">
 
         <compilerarg value="-Xlint" />
 
