@@ -8,17 +8,32 @@ package neo.geo;
 public class Coordinate
 {
   /** Standard constructor. */
-  public Coordinate(String id, Latitude latitude, Longitude longitude)
+  public Coordinate(String id, Latitude latitude, Longitude longitude, Altitude altitude)
   {
     this.id        = id;
     this.latitude  = latitude;
     this.longitude = longitude;
+    this.altitude  = altitude;
+  }
+
+  /** Constructor for an anonymous place. */
+  public Coordinate(Latitude latitude, Longitude longitude, Altitude altitude)
+  {
+    this(null, latitude, longitude, altitude);
+  }
+
+  /**
+   *
+  */
+  public Coordinate(String id, Latitude latitude, Longitude longitude)
+  {
+    this(id, latitude, longitude, null);
   }
 
   /** Constructor for an anonymous place. */
   public Coordinate(Latitude latitude, Longitude longitude)
   {
-    this(null, latitude, longitude);
+    this(null, latitude, longitude, null);
   }
 
   /** Set the id with given string. */
@@ -33,6 +48,9 @@ public class Coordinate
   /** Returns the longitude of coordinate. */
   public Longitude getLongitude() { return longitude; }
 
+  /** Returns the altitude of coordinate. */
+  public Altitude getAltitude() { return altitude; }
+
   /**
    * Returns a friendly string representation.
    *
@@ -42,13 +60,18 @@ public class Coordinate
   */
   public String asString()
   {
-    return String.format("%s at [%s  %s]", getId(), latitude.asString(), longitude.asString());
+    return String.format("%s at [%s  %s] %s", getId(), latitude.asString(), longitude.asString(), (altitude != null ? altitude.asString() : ""));
   }
 
   /** Optional place identification. */
   private String    id;
+
   /** North:South axis ordinate. */
   private Latitude  latitude;
+
   /** East:West axis ordinate. */
   private Longitude longitude;
+
+  /** Altimetric measurement. */
+  private Altitude altitude;
 }

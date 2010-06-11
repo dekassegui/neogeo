@@ -9,7 +9,7 @@
   <property name="build" value="${basedir}/build" />
 
   <patternset id="source"
-    includes="${mainclass}.java Coordinate.java Ordinate.java Latitude.java Longitude.java PolarCoordinate.java" />
+    includes="${mainclass}.java Coordinate.java Ordinate.java Latitude.java Longitude.java Altitude.java PolarCoordinate.java" />
 
   <target name="compile">
 
