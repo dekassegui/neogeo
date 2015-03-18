@@ -1,0 +1,1 @@
+<font color='navy'><b>NeoGeo</b></font> is a minimal API for Earth Navigation and Geoprocessment encapsulating calculus methods and related constants.
